@@ -55,28 +55,28 @@ options:
 EXAMPLES = '''
 - name: Create VHD with size of 120GB with dynamic expansion
   kenmoini.hyperv.vhd:
-    path: C:\Temp\my_vhd.vhdx
+    path: "C:\Temp\my_vhd.vhdx"
     state: present
     size: 120GB
     dynamicExpansion: true
 
 - name: Delete a VHD
   kenmoini.hyperv.vhd:
-    name: C:\Temp\my_vhd.vhdx
+    name: "C:\Temp\my_vhd.vhdx"
     state: absent
 
 - name: Create a fixed size VHD with size of 100GB
   kenmoini.hyperv.vhd:
-    path: C:\Temp\my_fixed_vhd.vhdx
+    path: "C:\Temp\my_fixed_vhd.vhdx"
     state: present
     size: 120GB
     fixed: true
 
 - name: Clone a VHD
   kenmoini.hyperv.vhd:
-    path: C:\Temp\my_cloned_vhd.vhdx
+    path: "C:\Temp\my_cloned_vhd.vhdx"
     state: present
-    cloneVHD: C:\Temp\my_original_vhd.vhdx
+    cloneVHD: "C:\Temp\my_original_vhd.vhdx"
 '''
 
 ANSIBLE_METADATA = {

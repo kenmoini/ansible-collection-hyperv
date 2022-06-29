@@ -13,29 +13,30 @@
 ### vhd
 
 ```yaml
-- name: Create Virtual Switch bridged from Ethernet Adapter 1
-  kenmoini.hyperv.vmswitch:
-    name: VMNetwork
+- name: Create VHD with size of 120GB with dynamic expansion
+  kenmoini.hyperv.vhd:
+    path: "C:\Temp\my_vhd.vhdx"
     state: present
-    adapterName: Ethernet Adapter 1
-    allowManagementOS: true
+    size: 120GB
+    dynamicExpansion: true
 
-- name: Delete a Virtual Switch
-  kenmoini.hyperv.vmswitch:
-    name: VMNetwork
+- name: Delete a VHD
+  kenmoini.hyperv.vhd:
+    name: "C:\Temp\my_vhd.vhdx"
     state: absent
 
-- name: Create an Internally routed Virtual Switch
-  kenmoini.hyperv.vmswitch:
-    name: natty
+- name: Create a fixed size VHD with size of 100GB
+  kenmoini.hyperv.vhd:
+    path: "C:\Temp\my_fixed_vhd.vhdx"
     state: present
-    switchType: Internal
+    size: 120GB
+    fixed: true
 
-- name: Create a Private Virtual Switch
-  kenmoini.hyperv.vmswitch:
-    name: NoNet
+- name: Clone a VHD
+  kenmoini.hyperv.vhd:
+    path: "C:\Temp\my_cloned_vhd.vhdx"
     state: present
-    switchType: Private
+    cloneVHD: "C:\Temp\my_original_vhd.vhdx"
 ```
 
 ### vhd_info
