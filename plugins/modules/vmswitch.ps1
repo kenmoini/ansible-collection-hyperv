@@ -22,10 +22,14 @@ Function VirtualSwitch-Create {
     
     if ($switchType) {
       $cmd += " -SwitchType $switchType"
+    } else {
+      Fail-Json $result "switchType is required when creating a VirtualSwitch"
     }
     
     if ($adapterName) {
       $cmd += " -NetAdapterName '$adapterName'"
+    } else {
+      Fail-Json $result "adapterName is required when creating a VirtualSwitch"
     }
     
     if ($allowManagementOS) {
