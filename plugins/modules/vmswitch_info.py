@@ -23,12 +23,12 @@ options:
 '''
 
 EXAMPLES = '''
-  # Get the information of a Virtual Switch called VMNetwork
+- name: Get the information of a Virtual Switch called VMNetwork
   kenmoini.hyperv.vmswitch_info:
     name: VMNetwork
   register: r_vmswitch_info
 
-  # Print out the results
+- name: Print out the results
   debug:
     msg: "{{ r_vmswitch_info.json | from_json }}"
 '''

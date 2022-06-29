@@ -49,25 +49,25 @@ options:
 '''
 
 EXAMPLES = '''
-  # Create Virtual Switch bridged from Ethernet Adapter 1
+- name: Create Virtual Switch bridged from Ethernet Adapter 1
   kenmoini.hyperv.vmswitch:
     name: VMNetwork
     state: present
     adapterName: Ethernet Adapter 1
     allowManagementOS: true
 
-  # Delete a Virtual Switch
+- name: Delete a Virtual Switch
   kenmoini.hyperv.vmswitch:
     name: VMNetwork
     state: absent
 
-  # Create an Internally routed Virtual Switch
+- name: Create an Internally routed Virtual Switch
   kenmoini.hyperv.vmswitch:
     name: natty
     state: present
     switchType: Internal
 
-  # Create a Private Virtual Switch
+- name: Create a Private Virtual Switch
   kenmoini.hyperv.vmswitch:
     name: NoNet
     state: present
