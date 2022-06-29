@@ -97,6 +97,19 @@
     network_switch: WAN1
 ```
 
+### vm_info
+
+```yaml
+- name: Get the information of a Virtual Machine called my-vm
+  kenmoini.hyperv.vm_info:
+    name: my-vm
+  register: r_vm_info
+
+- name: Print out the results
+  debug:
+    msg: "{{ r_vm_info.json | from_json }}"
+```
+
 ### vmswitch
 
 ```yaml
