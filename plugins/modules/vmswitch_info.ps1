@@ -1,6 +1,6 @@
 #!powershell
 #########################################################################################################################################
-# kenmoini.win_hyperv_vmswitch_info - Get the configuration information of Virtual Switches from a Windows Server running Hyper-V
+# kenmoini.hyperv.vmswitch_info - Get the configuration information of Virtual Switches from a Windows Server running Hyper-V
 #########################################################################################################################################
 
 # WANT_JSON

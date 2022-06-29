@@ -1,7 +1,7 @@
 #!powershell
 
 #########################################################################################################################################
-# kenmoini.win_hyperv_vhd - Create/Delete Virtual Switches from a Windows Server running Hyper-V
+# kenmoini.hyperv.vhd - Create/Delete Virtual Switches from a Windows Server running Hyper-V
 #########################################################################################################################################
 
 # WANT_JSON

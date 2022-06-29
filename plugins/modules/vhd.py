@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #########################################################################################################################################
-# kenmoini.win_hyperv_vhd - Create/Delete Virtual Switches from a Windows Server running Hyper-V
+# kenmoini.hyperv.vhd - Create/Delete Virtual Switches from a Windows Server running Hyper-V
 #########################################################################################################################################
 
 # this is a windows documentation stub. actual code lives in the .ps1
@@ -12,8 +12,8 @@
 
 DOCUMENTATION = '''
 ---
-module: win_hyperv_vhd
-version_added: "2.5"
+module: vhd
+version_added: "1.0.0"
 short_description: Adds, deletes and performs configuration of Hyper-V Virtual Hard Drives (VHDX).
 description:
     - Adds, deletes and performs configuration of Hyper-V Virtual Hard Drives (VHDX).
@@ -53,27 +53,27 @@ options:
 '''
 
 EXAMPLES = '''
-  # Create VHD with size of 120GB with dynamic expansion
-  win_hyperv_vhd:
+- name: Create VHD with size of 120GB with dynamic expansion
+  kenmoini.hyperv.vhd:
     path: C:\Temp\my_vhd.vhdx
     state: present
     size: 120GB
     dynamicExpansion: true
 
-  # Delete a VHD
-  win_hyperv_vhd:
+- name: Delete a VHD
+  kenmoini.hyperv.vhd:
     name: C:\Temp\my_vhd.vhdx
     state: absent
 
-  # Create a fixed size VHD with size of 100GB
-  win_hyperv_vhd:
+- name: Create a fixed size VHD with size of 100GB
+  kenmoini.hyperv.vhd:
     path: C:\Temp\my_fixed_vhd.vhdx
     state: present
     size: 120GB
     fixed: true
 
-  # Clone a VHD
-  win_hyperv_vhd:
+- name: Clone a VHD
+  kenmoini.hyperv.vhd:
     path: C:\Temp\my_cloned_vhd.vhdx
     state: present
     cloneVHD: C:\Temp\my_original_vhd.vhdx

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #########################################################################################################################################
-# kenmoini.vmswitch_info - Get the configuration information of Virtual Switches from a Windows Server running Hyper-V
+# kenmoini.hyperv.vmswitch_info - Get the configuration information of Virtual Switches from a Windows Server running Hyper-V
 #########################################################################################################################################
 
 # this is a windows documentation stub. actual code lives in the .ps1
