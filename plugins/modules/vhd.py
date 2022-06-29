@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #########################################################################################################################################
-# kenmoini.hyperv.vhd - Create/Delete Virtual Switches from a Windows Server running Hyper-V
+# kenmoini.hyperv.vhd - Adds, deletes and performs configuration of Hyper-V Virtual Hard Drives (VHDX).
 #########################################################################################################################################
 
 # this is a windows documentation stub. actual code lives in the .ps1
