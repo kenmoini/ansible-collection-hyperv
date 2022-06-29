@@ -8,6 +8,34 @@
 
 ## Examples
 
+### vhd
+
+```yaml
+- name: Create Virtual Switch bridged from Ethernet Adapter 1
+  kenmoini.hyperv.vmswitch:
+    name: VMNetwork
+    state: present
+    adapterName: Ethernet Adapter 1
+    allowManagementOS: true
+
+- name: Delete a Virtual Switch
+  kenmoini.hyperv.vmswitch:
+    name: VMNetwork
+    state: absent
+
+- name: Create an Internally routed Virtual Switch
+  kenmoini.hyperv.vmswitch:
+    name: natty
+    state: present
+    switchType: Internal
+
+- name: Create a Private Virtual Switch
+  kenmoini.hyperv.vmswitch:
+    name: NoNet
+    state: present
+    switchType: Private
+```
+
 ### vmswitch
 
 ```yaml
