@@ -25,7 +25,7 @@ options:
 EXAMPLES = '''
 - name: Get the information of a VHD File
   kenmoini.hyperv.vhd_info:
-    path: "C:\Temp\my_vhd.vhdx"
+    path: "C:\Temp\my_vm.vhdx"
   register: r_vhd_info
 
 - name: Print out the results

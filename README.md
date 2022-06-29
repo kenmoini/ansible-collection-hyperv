@@ -36,6 +36,19 @@
     switchType: Private
 ```
 
+### vhd_info
+
+```yaml
+- name: Get the information of a VHD File
+  kenmoini.hyperv.vhd_info:
+    path: "C:\Temp\my_vm.vhdx"
+  register: r_vhd_info
+
+- name: Print out the results
+  debug:
+    msg: "{{ r_vhd_info.json | from_json }}"
+```
+
 ### vmswitch
 
 ```yaml
