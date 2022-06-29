@@ -5,6 +5,7 @@
 - vhd
 - vhd_info
 - vm
+- vm_info
 - vmswitch
 - vmswitch_info
 
