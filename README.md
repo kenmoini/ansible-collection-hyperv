@@ -1,3 +1,7 @@
 # Ansible Collection - kenmoini.hyperv
 
-Documentation for the collection.
+## Available Modules
+
+- win_hyperv_vhd
+- win_hyperv_vmswitch
+
