@@ -3,6 +3,7 @@
 ## Available Modules
 
 - vhd
+- vhd_info
 - vmswitch
 - vmswitch_info
 
