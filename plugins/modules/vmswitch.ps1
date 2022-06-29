@@ -48,6 +48,9 @@ Function VirtualSwitch-Create {
     
     if (!$check_mode) {
       $results = invoke-expression -Command "$cmd"
+
+      # Get the information about the VMSwitch and return it as JSON
+      $result.json = Get-VMSwitch -Name "$name" | ConvertTo-Json -Compress
     }
   } else {
     $result.changed = $false

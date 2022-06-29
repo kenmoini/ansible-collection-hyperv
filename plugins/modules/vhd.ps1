@@ -53,6 +53,9 @@ Function VHD-Create {
     
     if (!$check_mode) {
       $results = invoke-expression -Command "$cmd"
+      
+      # Get the information about the VHD and return it as JSON
+      $result.json = Get-VHD -Path "$path" | ConvertTo-Json -Compress
     }
   } else {
     $result.changed = $false
