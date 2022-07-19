@@ -62,7 +62,7 @@ EXAMPLES = '''
 
 - name: Delete a VHD
   kenmoini.hyperv.vhd:
-    name: "C:\Temp\my_vhd.vhdx"
+    path: "C:\Temp\my_vhd.vhdx"
     state: absent
 
 - name: Create a fixed size VHD with size of 100GB
