@@ -54,6 +54,17 @@ Function VM-Create {
       $cmd=$cmd + "; Set-VMProcessor '$name' -Count $cpu"
     }
 
+    # Next command chain for setting CDROM ISO
+    if ($cdrom) {
+      # Check to see if the ISO exists
+      if (!(Test-Path $cdrom -PathType Leaf)) {
+        # Path does not exist, error out
+        Fail-Json $result "cdrom does not exist, must exist on host!"
+      } else {
+        $cmd=$cmd + "; Add-VMDvdDrive -VMName '$name' -Path '$cdrom'"
+      }
+    }
+
     # Next command chain for setting Processor Live Migration
     if ($liveMigration) {
       $cmd=$cmd + '; Set-VMProcessor "$name" -CompatibilityForMigrationEnabled $true'
@@ -62,6 +73,11 @@ Function VM-Create {
     # Next command chain for setting Processor Nested Virtualization
     if ($nestedVirtualization) {
       $cmd=$cmd + '; Set-VMProcessor "$name" -ExposeVirtualizationExtensions $true'
+    }
+
+    # Next command attach the network
+    if ($networkSwitch) {
+      $cmd=$cmd + "; Add-VMNetworkAdapter -VMName '$name' -SwitchName '$networkSwitch'"
     }
 
     $result.cmd_used = $cmd
@@ -73,6 +89,7 @@ Function VM-Create {
       $result.json = Get-VM -Name "$name" | ConvertTo-Json -Compress
     }
   } else {
+    # [TODO] VM Exists, check to see if the configuration is the same
     $result.changed = $false
   }
 }
@@ -119,7 +136,7 @@ Function VM-Delete {
   $CheckVM = Get-VM -name $name -ErrorAction SilentlyContinue
   
   if ($CheckVM) {
-    $cmd="Remove-VM -Name $name -Force"
+    $cmd="Stop-VM -Name $name -TurnOff; Remove-VM -Name $name -Force"
     $result.cmd_used = $cmd
     $result.changed = $true
 
@@ -151,11 +168,15 @@ $state = Get-AnsibleParam $params "state" -type "str" -FailIfEmpty $true -emptya
 $force = Get-AnsibleParam $params "force" -type "bool" -Default $null
 $cpu = Get-AnsibleParam $params "cpu" -type "int" -Default $null
 $memory = Get-AnsibleParam $params "memory" -type "str" -Default $null
-$generation = Get-AnsibleParam $params "generation" -type "int" -Default "2"
+$generation = Get-AnsibleParam $params "generation" -type "int" -Default "1"
+
 $networkSwitch = Get-AnsibleParam $params "networkSwitch" -type "str" -aliases "network" -Default $null
+
 $diskPath = Get-AnsibleParam $params "diskPath" -type "str" -aliases "path" -Default $null
 $diskSize = Get-AnsibleParam $params "diskSize" -type "str" -aliases "size" -Default $null
 $bootDevice = Get-AnsibleParam $params "bootDevice" -type "str" -Default $null
+$cdrom = Get-AnsibleParam $params "cdrom" -type "str" -Default $null
+
 $liveMigration = Get-AnsibleParam $params "liveMigration" -type "bool" -Default $null
 $nestedVirtualization = Get-AnsibleParam $params "nestedVirtualization" -type "bool" -Default $null
 
@@ -168,7 +189,9 @@ Try {
     "present" {VM-Create}
     "absent" {VM-Delete}
     "stopped" {VM-Stop}
+    "poweredoff" {VM-Stop}
     "started" {VM-Start}
+    "poweredon" {VM-Start}
   }
   Exit-Json $result;
 } Catch {

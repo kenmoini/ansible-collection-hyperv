@@ -29,6 +29,8 @@ options:
       - absent
       - started
       - stopped
+      - poweredon
+      - poweredoff
     default: null
   force:
     description:
@@ -38,6 +40,7 @@ options:
       - true
       - false
     default: null
+
   cpu:
     description:
       - Number of CPUs
@@ -53,11 +56,13 @@ options:
       - Specifies the generation of the VM
     required: false
     default: 2
+
   networkSwitch:
     description:
       - Specifies a network adapter for the VM
     required: false
     default: null
+
   diskPath:
     description:
       - Specify path of VHD/VHDX file for VM
@@ -74,6 +79,12 @@ options:
       - Specify the boot device for the VM - accepts Floppy, CD, IDE, LegacyNetworkAdapter, NetworkAdapter, VHD
     required: false
     default: null
+  cdrom:
+    description:
+      - Specify the path of the ISO image to use for the VM installation
+    required: false
+    default: null
+
   liveMigration:
     description:
       - Enable or disable CPU Live Migration
@@ -93,7 +104,7 @@ EXAMPLES = '''
     state: present
     memory: 4GB
     cpu: 4
-    network_switch: VMNetwork
+    networkSwitch: VMNetwork
     diskSize: 10GB
     diskpath: C:\Temp\my_vm.vhdx
 
@@ -126,7 +137,7 @@ EXAMPLES = '''
     state: present
     generation: 1
     memory: 256MB
-    network_switch: WAN1
+    networkSwitch: WAN1
 '''
 
 ANSIBLE_METADATA = {
